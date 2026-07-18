@@ -7,37 +7,55 @@
   <meta name="description" content="The next evolution of health & longevity. Premium-grade peptides for cellular repair, performance, and healthy aging.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="logo.png" type="image/png">
-  <style>
-    :root,
-    [data-theme="dark"] {
-      --bg: #0a0909;
-      --bg-secondary: #12120e;
-      --text: #f9f6f1;
-      --text-secondary: #a09888;
-      --accent: #70804a;
-      --accent-hover: #8d996e;
-      --card-bg: rgba(18, 18, 14, 0.8);
-      --card-border: rgba(83, 102, 39, 0.15);
-      --navbar-bg: rgba(10, 9, 9, 0.9);
-    }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo-utama.png" type="image/png">
 
-    [data-theme="light"] {
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
       --bg: #f9f6f1;
       --bg-secondary: #ffffff;
       --text: #0a0909;
       --text-secondary: #5a5550;
       --accent: #536627;
       --accent-hover: #697749;
+      --accent-soft: #8d996e;
       --card-bg: #ffffff;
-      --card-border: rgba(83, 102, 39, 0.06);
-      --navbar-bg: rgba(249, 246, 241, 0.9);
+      --card-border: rgba(83,102,39,0.08);
+      --navbar-bg: rgba(249,246,241,0.85);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    *,
-    *::before,
-    *::after {
+    [data-theme="dark"] {
+      --bg: #0a0909;
+      --bg-secondary: #14130f;
+      --text: #f9f6f1;
+      --text-secondary: #a09888;
+      --accent: #8d996e;
+      --accent-hover: #a8b28d;
+      --accent-soft: #70804a;
+      --card-bg: rgba(20,19,15,0.6);
+      --card-border: rgba(141,153,110,0.12);
+      --navbar-bg: rgba(10,9,9,0.85);
+    }
+
+    [data-theme="dark"] .logo img,
+    [data-theme="dark"] .footer-brand img {
+      filter: brightness(0) invert(1);
+    }
+
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -48,11 +66,12 @@
     }
 
     body {
-      font-family: 'Inter', -apple-system, sans-serif;
+      font-family: var(--font);
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      transition: background 0.3s ease, color 0.3s ease;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
     }
 
     .container {
@@ -64,35 +83,58 @@
     a {
       color: var(--accent);
       text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-hover);
     }
 
     section {
-      padding: 100px 0;
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
+      text-align: center;
     }
 
     .section-title {
-      font-size: 2.5rem;
+      font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
       text-align: center;
       margin-bottom: 16px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
 
-    .section-subtitle {
+    .section-desc {
       font-size: 1.1rem;
       color: var(--text-secondary);
       text-align: center;
-      margin-bottom: 60px;
+      max-width: 650px;
+      margin: 0 auto 60px;
+      line-height: 1.7;
     }
 
     .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: var(--radius-sm);
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 0.95rem;
       cursor: pointer;
       border: none;
-      transition: all 0.3s ease;
+      transition: all var(--transition);
+      font-family: var(--font);
     }
 
     .btn-primary {
@@ -102,32 +144,69 @@
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 0 30px rgba(83, 102, 39, 0.3);
+      box-shadow: 0 8px 32px rgba(83,102,39,0.25);
+      transform: translateY(-2px);
     }
 
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(83,102,39,0.2);
+    }
+
+    .section-divider {
+      height: 1px;
+      max-width: 200px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.3;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up-d1 { transition-delay: 0.1s; }
+    .fade-up-d2 { transition-delay: 0.2s; }
+    .fade-up-d3 { transition-delay: 0.3s; }
+    .fade-up-d4 { transition-delay: 0.4s; }
+
+    /* ============ NAVBAR ============ */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
       z-index: 1000;
       background: var(--navbar-bg);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--card-border);
-      transition: background 0.3s ease;
+      transition: background 0.3s;
     }
 
-    .nav-container {
+    .nav-inner {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 70px;
+      height: 72px;
     }
 
-    .logo {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 2px;
+    .logo img {
+      display: block;
     }
 
     .nav-right {
@@ -139,14 +218,30 @@
     .nav-links {
       display: flex;
       list-style: none;
-      gap: 24px;
+      gap: 28px;
     }
 
     .nav-links a {
       color: var(--text-secondary);
       font-size: 0.9rem;
-      font-weight: 400;
-      transition: color 0.3s;
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
     .nav-links a:hover {
@@ -156,51 +251,142 @@
     .theme-toggle {
       background: none;
       border: 1px solid var(--card-border);
-      border-radius: 8px;
-      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      padding: 8px;
       cursor: pointer;
-      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.3s;
+      color: var(--text);
+      line-height: 0;
     }
 
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--text);
+    }
+
+    /* ============ HERO ============ */
     .hero {
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding-top: 70px;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
     }
 
     .hero-tagline {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       color: var(--accent);
-      margin-bottom: 20px;
-    }
-
-    .hero-title {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 700;
-      line-height: 1.1;
       margin-bottom: 24px;
     }
 
-    .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-secondary);
-      max-width: 600px;
-      margin: 0 auto 36px;
-      line-height: 1.7;
+    .hero-title {
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      margin-bottom: 28px;
+      letter-spacing: -0.03em;
     }
 
-    .pillars {
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .hero-ctas {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .hero-trust {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .hero-trust-item svg {
+      flex-shrink: 0;
+    }
+
+    /* ============ STATS ============ */
+    .stats {
       background: var(--bg-secondary);
+      padding: 60px 0;
       transition: background 0.3s;
     }
 
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ============ PILLARS ============ */
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -210,20 +396,21 @@
     .pillar-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 40px 28px;
+      border-radius: var(--radius-lg);
+      padding: 44px 32px;
       text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: all var(--transition);
     }
 
     .pillar-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+      border-color: var(--accent-soft);
     }
 
     .pillar-icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
+      color: var(--accent);
     }
 
     .pillar-card h3 {
@@ -235,324 +422,1237 @@
     .pillar-card p {
       color: var(--text-secondary);
       font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    /* ============ ABOUT ============ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-text .section-title {
+      text-align: left;
+    }
+
+    .about-text .section-desc {
+      text-align: left;
+      margin: 0 0 24px;
+      max-width: none;
+    }
+
+    .about-body {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .about-quote {
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      margin-top: 32px;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .about-visual {
+      position: relative;
+      height: 100%;
+      min-height: 400px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 50%, var(--accent-hover) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+    }
+
+    .about-pattern {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.1) 1px, transparent 0);
+      background-size: 32px 32px;
+    }
+
+    .about-visual-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: rgba(255,255,255,0.9);
+      padding: 40px;
+    }
+
+    .about-visual-content svg {
+      margin-bottom: 16px;
+    }
+
+    .about-visual-content p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      max-width: 300px;
+      line-height: 1.6;
+    }
+
+    /* ============ WHY PEPTIDES ============ */
+    .why-peptides {
+      background: var(--bg-secondary);
+      transition: background 0.3s;
     }
 
     .peptides-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 24px;
     }
 
     .peptide-card {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 28px 24px;
-      transition: transform 0.3s;
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: all var(--transition);
     }
 
     .peptide-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    }
+
+    .peptide-card .pillar-icon {
+      color: var(--accent);
     }
 
     .peptide-card h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--accent);
+      margin-bottom: 10px;
+      color: var(--text);
     }
 
     .peptide-card p {
       font-size: 0.9rem;
       color: var(--text-secondary);
+      line-height: 1.7;
     }
 
-    .steps {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
+    /* ============ HOW IT WORKS ============ */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
       margin-bottom: 48px;
+      align-items: start;
     }
 
-    .step {
+    .step-card {
       text-align: center;
-      flex: 1;
-      min-width: 140px;
     }
 
     .step-number {
-      width: 54px;
-      height: 54px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: var(--accent);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
-      margin: 0 auto 12px;
+      margin: 0 auto 16px;
+      transition: all var(--transition);
     }
 
-    .step h3 {
-      font-size: 1rem;
+    .step-card:hover .step-number {
+      box-shadow: 0 0 0 6px rgba(83,102,39,0.15);
+    }
+
+    .step-card h3 {
+      font-size: 1.05rem;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .step p {
+    .step-card p {
       font-size: 0.85rem;
       color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 240px;
+      margin: 0 auto;
     }
 
-    .step-arrow {
-      font-size: 1.5rem;
+    .step-arrow-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 20px;
       color: var(--accent);
-      font-weight: 300;
-      margin-top: -30px;
     }
 
     .how-cta {
       text-align: center;
     }
 
-    .trust {
-      background: var(--bg-secondary);
+    /* ============ PRODUCT CATEGORIES ============ */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 24px;
       text-align: center;
+      transition: all var(--transition);
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0,0,0,0.08);
+      border-color: var(--accent-soft);
+    }
+
+    .product-card .pillar-icon {
+      margin-bottom: 20px;
+    }
+
+    .product-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .product-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .product-link:hover {
+      gap: 10px;
+    }
+
+    /* ============ TESTIMONIALS ============ */
+    .testimonials {
+      background: var(--bg-secondary);
       transition: background 0.3s;
     }
 
-    .trust-heading {
-      font-size: 1.3rem;
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: all var(--transition);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+
+    .testimonial-quote {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
       font-weight: 600;
-      letter-spacing: 1px;
+      font-size: 1rem;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-role {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ============ FAQ ============ */
+    .faq-list {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.4rem;
+      color: var(--accent);
+      font-weight: 300;
+      transition: transform 0.3s;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item summary:hover {
+      color: var(--accent);
+    }
+
+    .faq-answer {
+      padding: 0 0 20px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ============ TRUST BADGES ============ */
+    .trust {
+      text-align: center;
+    }
+
+    .trust-heading {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
       margin-bottom: 40px;
+      text-transform: uppercase;
     }
 
     .trust-grid {
       display: flex;
       justify-content: center;
-      gap: 32px;
+      gap: 40px;
       flex-wrap: wrap;
     }
 
-    .trust-badge {
-      font-size: 1rem;
-      font-weight: 400;
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
       color: var(--text-secondary);
+      font-weight: 500;
     }
 
-    .footer {
+    .trust-item svg {
+      flex-shrink: 0;
+      color: var(--accent);
+    }
+
+    /* ============ CTA SECTION ============ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-soft) 100%);
       text-align: center;
-      padding: 60px 0 40px;
+      padding: 100px 0;
+    }
+
+    .cta-section .section-title {
+      color: #fff;
+    }
+
+    .cta-section .section-desc {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .cta-section .btn {
+      background: #fff;
+      color: var(--accent);
+    }
+
+    .cta-section .btn:hover {
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      transform: translateY(-2px);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      padding: 80px 0 40px;
       border-top: 1px solid var(--card-border);
     }
 
-    .footer-brand h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
     }
 
-    .footer-brand p {
+    .footer-brand .footer-tagline {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    .footer-brand .footer-desc {
       color: var(--text-secondary);
       font-size: 0.9rem;
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 300px;
+    }
+
+    .footer h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
       letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer ul li a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer ul li a:hover {
+      color: var(--accent);
     }
 
     .footer-social {
-      margin: 24px 0;
-      font-size: 1rem;
-      color: var(--accent);
-      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
     }
 
     .footer-bottom {
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
       font-size: 0.8rem;
       color: var(--text-secondary);
-      margin-top: 32px;
     }
 
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1024px) {
+      .about-grid {
+        gap: 40px;
+      }
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
-      section { padding: 60px 0; }
-      .section-title { font-size: 1.8rem; }
+      section { padding: 80px 0; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--navbar-bg);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.4rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px 16px;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
       .pillars-grid,
-      .peptides-grid { grid-template-columns: 1fr; }
-      .steps { flex-direction: column; }
-      .step-arrow { transform: rotate(90deg); margin: 0; }
-      .nav-links { display: none; }
+      .peptides-grid,
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .about-visual {
+        min-height: 280px;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .step-arrow-wrap {
+        transform: rotate(90deg);
+        padding: 0;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .trust-grid {
+        gap: 20px;
+      }
+
+      .hero-trust {
+        gap: 20px;
+      }
     }
 
     @media (max-width: 480px) {
-      .hero-title { font-size: 2rem; }
-      .hero-subtitle { font-size: 1rem; }
-      .trust-grid { flex-direction: column; gap: 16px; }
+      section { padding: 60px 0; }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-trust {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 12px;
+      }
+
+      .about-visual {
+        min-height: 220px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
-    <div class="container nav-container">
-      <a href="#" class="logo"><img src="logo.png" alt="BALIBIOHACK" height="32"></a>
+    <div class="container nav-inner">
+      <a href="#" class="logo">
+        <img src="logo-utama.png" alt="BALIBIOHACK" height="36">
+      </a>
       <div class="nav-right">
-        <ul class="nav-links">
-          <li><a href="#why">Why Peptides</a></li>
-          <li><a href="#how">How It Works</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#science">Science</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#process">Process</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
-        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
       </div>
     </div>
   </nav>
 
+  <!-- ===== HERO ===== -->
   <section class="hero">
-    <div class="container">
-      <p class="hero-tagline">HACK IT. LIVE BETTER. LONGER.</p>
-      <h1 class="hero-title">THE NEXT EVOLUTION OF<br>HEALTH &amp; LONGEVITY</h1>
-      <p class="hero-subtitle">
-        Peptides are short chains of amino acids that act as messengers in the body — 
-        supporting repair, regeneration, performance, and overall well-being.
+    <div id="hero-canvas"></div>
+    <div class="container hero-content">
+      <p class="hero-tagline fade-up visible">HACK IT. LIVE BETTER. LONGER.</p>
+      <h1 class="hero-title fade-up visible fade-up-d1">THE NEXT EVOLUTION OF<br>HEALTH &amp; LONGEVITY</h1>
+      <p class="hero-subtitle fade-up visible fade-up-d2">
+        Premium-grade bioactive peptides engineered for cellular optimization — 
+        supporting repair, regeneration, performance, and healthy aging through 
+        targeted biological signaling pathways.
       </p>
-      <a href="#why" class="btn btn-primary">Discover Peptides</a>
+      <div class="hero-ctas fade-up visible fade-up-d3">
+        <a href="#benefits" class="btn btn-primary">Discover Peptides</a>
+        <a href="#science" class="btn btn-outline">Learn the Science</a>
+      </div>
+      <div class="hero-trust fade-up visible fade-up-d4">
+        <span class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Third-Party Tested
+        </span>
+        <span class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          Premium Grade
+        </span>
+        <span class="hero-trust-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 20h9"/>
+            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          Science Backed
+        </span>
+      </div>
     </div>
   </section>
 
-  <section class="pillars">
+  <!-- ===== STATS ===== -->
+  <section class="stats">
     <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Peptide Solutions</div>
+        </div>
+        <div class="stat-item fade-up fade-up-d1">
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Purity Standard</div>
+        </div>
+        <div class="stat-item fade-up fade-up-d2">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Research Partners</div>
+        </div>
+        <div class="stat-item fade-up fade-up-d3">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Healthy Clients</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PILLARS ===== -->
+  <section id="science">
+    <div class="container">
+      <p class="section-label fade-up">Our Foundation</p>
+      <h2 class="section-title fade-up">Built on Three Pillars</h2>
+      <p class="section-desc fade-up">
+        Every peptide solution we develop is grounded in scientific rigor, 
+        engineered for precision, and designed to optimize longevity.
+      </p>
       <div class="pillars-grid">
-        <div class="pillar-card">
-          <div class="pillar-icon">🔬</div>
+        <div class="pillar-card fade-up fade-up-d1">
+          <div class="pillar-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 20h16"/>
+              <path d="M6 16l2-6h8l2 6"/>
+              <path d="M12 10V4"/>
+              <path d="M10 4h4"/>
+              <circle cx="12" cy="16" r="2"/>
+            </svg>
+          </div>
           <h3>Science Backed</h3>
-          <p>Formulations based on peer-reviewed research and clinical studies.</p>
+          <p>Formulations grounded in peer-reviewed research and clinical evidence, validated through rigorous testing protocols.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">🎯</div>
+        <div class="pillar-card fade-up fade-up-d2">
+          <div class="pillar-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="12" cy="12" r="1.5"/>
+              <line x1="12" y1="2" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="6" y2="12"/>
+              <line x1="18" y1="12" x2="22" y2="12"/>
+            </svg>
+          </div>
           <h3>Targeted Regeneration</h3>
-          <p>Precise peptides designed for specific cellular pathways and outcomes.</p>
+          <p>Precision-engineered peptides designed to activate specific cellular pathways for measurable outcomes.</p>
         </div>
-        <div class="pillar-card">
-          <div class="pillar-icon">⏳</div>
+        <div class="pillar-card fade-up fade-up-d3">
+          <div class="pillar-icon">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
           <h3>Optimize Longevity</h3>
-          <p>Support healthy aging, recovery, and sustained vitality at every stage.</p>
+          <p>Support healthy aging, accelerated recovery, and sustained vitality across every stage of life.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="why" class="why-peptides">
+  <!-- ===== ABOUT ===== -->
+  <section class="about" style="background:var(--bg-secondary);transition:background 0.3s;">
     <div class="container">
-      <h2 class="section-title">Why Peptides?</h2>
-      <p class="section-subtitle">The building blocks of a healthier, longer life</p>
+      <div class="about-grid">
+        <div class="about-text fade-up">
+          <p class="section-label">Our Mission</p>
+          <h2 class="section-title">The Science of Better Living</h2>
+          <p class="about-body">
+            Balibiohack was founded at the intersection of advanced biochemistry and human performance. 
+            We believe the next frontier of health is not in treating disease but in optimizing the 
+            fundamental processes that keep us strong, sharp, and resilient.
+          </p>
+          <p class="about-body">
+            Peptides — short chains of amino acids — are nature's signaling molecules. They instruct 
+            cells to repair, regenerate, and perform at their peak. By harnessing these molecular 
+            messengers with precision formulation and rigorous quality standards, we deliver tools 
+            that help people take control of their biology.
+          </p>
+          <p class="about-body">
+            Every product in our range is third-party tested, pharmaceutical-grade, and backed by 
+            the latest peer-reviewed research. We don't cut corners because biology doesn't either.
+          </p>
+          <div class="about-quote">
+            "Our mission is to make advanced peptide science accessible to everyone committed to 
+            living better, longer."
+          </div>
+        </div>
+        <div class="about-visual fade-up fade-up-d1">
+          <div class="about-pattern"></div>
+          <div class="about-visual-content">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/>
+              <path d="M8 14h8"/>
+              <path d="M8 18h8"/>
+              <path d="M12 14v4"/>
+              <path d="M6 22h12"/>
+              <path d="M6 22l2-8"/>
+              <path d="M18 22l-2-8"/>
+            </svg>
+            <p>Premium-Grade Peptide Science</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY PEPTIDES ===== -->
+  <section id="benefits" class="why-peptides">
+    <div class="container">
+      <p class="section-label fade-up">Why Peptides</p>
+      <h2 class="section-title fade-up">The Building Blocks of a Healthier Life</h2>
+      <p class="section-desc fade-up">
+        Bioactive peptides are fundamental to how your body repairs, regulates, and optimizes itself.
+      </p>
       <div class="peptides-grid">
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d1">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
           <h3>Cellular Communication</h3>
-          <p>Peptides signal cells to perform functions more efficiently</p>
+          <p>Peptides act as biological messengers, signaling cells to perform vital functions with greater efficiency and precision.</p>
         </div>
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d2">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
           <h3>Repair &amp; Regeneration</h3>
-          <p>Tissue repair, less inflammation, faster recovery</p>
+          <p>Accelerate tissue repair, reduce inflammation, and speed recovery at the cellular level.</p>
         </div>
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d3">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+          </div>
           <h3>Healthy Aging</h3>
-          <p>Collagen production, hormonal balance, skin, cognition</p>
+          <p>Boost collagen production, balance hormones, and enhance skin elasticity and cognitive function.</p>
         </div>
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d1">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="4"/>
+              <line x1="12" y1="2" x2="12" y2="6"/>
+              <line x1="12" y1="18" x2="12" y2="22"/>
+            </svg>
+          </div>
           <h3>Targeted &amp; Precise</h3>
-          <p>Specific pathways and measurable outcomes</p>
+          <p>Engineered to interact with specific receptors, delivering measurable and predictable outcomes.</p>
         </div>
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d2">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
           <h3>Performance &amp; Vitality</h3>
-          <p>Energy, endurance, and strength optimization</p>
+          <p>Optimize energy metabolism, endurance capacity, and muscular strength for peak performance.</p>
         </div>
-        <div class="peptide-card">
+        <div class="peptide-card fade-up fade-up-d3">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
           <h3>Prevention &amp; Wellness</h3>
-          <p>Immune support, metabolic health, long-term wellness</p>
+          <p>Strengthen immune response, support metabolic health, and promote long-term resilience.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="how" class="how-it-works">
+  <!-- ===== HOW IT WORKS ===== -->
+  <section id="process">
     <div class="container">
-      <h2 class="section-title">How Peptides Work</h2>
-      <p class="section-subtitle">A natural process, optimized</p>
-      <div class="steps">
-        <div class="step">
+      <p class="section-label fade-up">The Mechanism</p>
+      <h2 class="section-title fade-up">How Peptides Work</h2>
+      <p class="section-desc fade-up">
+        A precisely orchestrated biological cascade that unlocks your body's innate regenerative potential.
+      </p>
+      <div class="steps-grid">
+        <div class="step-card fade-up fade-up-d1">
           <div class="step-number">1</div>
           <h3>Absorbed</h3>
-          <p>Enter the body and absorb efficiently</p>
+          <p>Peptides enter the body and are absorbed efficiently through targeted delivery systems.</p>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
+        <div class="step-arrow-wrap fade-up fade-up-d1">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="step-card fade-up fade-up-d2">
           <div class="step-number">2</div>
           <h3>Recognized</h3>
-          <p>Bind to specific cell receptors</p>
+          <p>They bind to specific cell receptors with high affinity and biological specificity.</p>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
+        <div class="step-arrow-wrap fade-up fade-up-d2">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="step-card fade-up fade-up-d3">
           <div class="step-number">3</div>
           <h3>Signal Sent</h3>
-          <p>Trigger natural biological processes</p>
+          <p>Receptor binding triggers natural biological processes and targeted cellular responses.</p>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
+        <div class="step-arrow-wrap fade-up fade-up-d3">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="step-card fade-up fade-up-d4">
           <div class="step-number">4</div>
           <h3>Results</h3>
-          <p>Repair, regeneration, optimization</p>
+          <p>Experience repair, regeneration, and optimization across multiple biological systems.</p>
         </div>
       </div>
-      <div class="how-cta">
-        <a href="#contact" class="btn btn-primary">Explore Full Range</a>
+      <div class="how-cta fade-up">
+        <a href="#products" class="btn btn-primary">Explore Full Range</a>
       </div>
     </div>
   </section>
 
-  <section class="trust">
+  <!-- ===== PRODUCT CATEGORIES ===== -->
+  <section id="products" style="background:var(--bg-secondary);transition:background 0.3s;">
     <div class="container">
-      <p class="trust-heading">BACKED BY SCIENCE. DRIVEN BY QUALITY.</p>
-      <div class="trust-grid">
-        <div class="trust-badge">✓ Premium Grade</div>
-        <div class="trust-badge">✓ Third-Party Tested</div>
-        <div class="trust-badge">✓ Secure Packaging</div>
-        <div class="trust-badge">✓ Trusted Suppliers</div>
+      <p class="section-label fade-up">Product Range</p>
+      <h2 class="section-title fade-up">Targeted Solutions for Every Goal</h2>
+      <p class="section-desc fade-up">
+        Specialized peptide formulations designed for specific health and performance outcomes.
+      </p>
+      <div class="products-grid">
+        <div class="product-card fade-up fade-up-d1">
+          <div class="pillar-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <h3>Recovery &amp; Repair</h3>
+          <p>Accelerate tissue healing, reduce inflammation, and optimize post-injury recovery with targeted repair peptides.</p>
+          <a href="#" class="product-link">
+            Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card fade-up fade-up-d2">
+          <div class="pillar-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+              <path d="M12 11v4"/>
+              <path d="M10 13h4"/>
+            </svg>
+          </div>
+          <h3>Anti-Aging &amp; Longevity</h3>
+          <p>Combat age-related decline, boost collagen, balance hormones, and support cognitive vitality.</p>
+          <a href="#" class="product-link">
+            Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card fade-up fade-up-d3">
+          <div class="pillar-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3>Performance &amp; Energy</h3>
+          <p>Enhance endurance, strength, and metabolic efficiency for peak physical and mental output.</p>
+          <a href="#" class="product-link">
+            Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+        <div class="product-card fade-up fade-up-d4">
+          <div class="pillar-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Immune &amp; Wellness</h3>
+          <p>Strengthen immune function, support metabolic health, and build systemic resilience.</p>
+          <a href="#" class="product-link">
+            Learn More
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer id="contact" class="footer">
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials">
     <div class="container">
-      <div class="footer-content">
+      <p class="section-label fade-up">Testimonials</p>
+      <h2 class="section-title fade-up">Trusted by the Community</h2>
+      <p class="section-desc fade-up">
+        Real results from people who have made peptide optimization part of their health protocol.
+      </p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up fade-up-d1">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">"I've been using Balibiohack's recovery protocol for three months. The difference in joint health and post-workout recovery is remarkable. This is legit science."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MK</div>
+            <div>
+              <div class="testimonial-name">Marcus K.</div>
+              <div class="testimonial-role">Professional Athlete</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up fade-up-d2">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">"The cognitive clarity and energy stability I've experienced since starting Balibiohack's nootropic peptide stack has been life-changing. Finally, a brand that delivers on its promises."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SR</div>
+            <div>
+              <div class="testimonial-name">Sarah R.</div>
+              <div class="testimonial-role">Biohacker &amp; Wellness Coach</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up fade-up-d3">
+          <div class="testimonial-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-quote">"As someone who works in longevity research, I hold peptides to a high standard. Balibiohack's purity and formulation quality are exceptional. A trusted partner."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DC</div>
+            <div>
+              <div class="testimonial-name">Dr. Chen L.</div>
+              <div class="testimonial-role">Longevity Researcher</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section id="faq">
+    <div class="container">
+      <p class="section-label fade-up">FAQ</p>
+      <h2 class="section-title fade-up">Common Questions</h2>
+      <p class="section-desc fade-up">
+        Everything you need to know about peptides and how they can support your health journey.
+      </p>
+      <div class="faq-list">
+        <details class="faq-item fade-up">
+          <summary>What are peptides?</summary>
+          <div class="faq-answer">Peptides are short chains of amino acids — the building blocks of proteins. They function as signaling molecules in the body, instructing cells to perform specific biological processes like repair, regeneration, and hormone regulation. Unlike larger proteins, peptides are small enough to be efficiently absorbed and utilized.</div>
+        </details>
+        <details class="faq-item fade-up fade-up-d1">
+          <summary>Are peptides safe?</summary>
+          <div class="faq-answer">When sourced from reputable suppliers and used as directed, peptides have an excellent safety profile. All Balibiohack products are third-party tested for purity, potency, and contaminants. We recommend consulting with a healthcare professional before starting any new supplement protocol.</div>
+        </details>
+        <details class="faq-item fade-up fade-up-d2">
+          <summary>How long until I see results?</summary>
+          <div class="faq-answer">Results vary depending on the specific peptide, dosage, and individual biochemistry. Many users report noticeable improvements within 2-4 weeks of consistent use, while some benefits — particularly around tissue repair and anti-aging — may take 8-12 weeks to become fully apparent.</div>
+        </details>
+        <details class="faq-item fade-up fade-up-d3">
+          <summary>How are peptides administered?</summary>
+          <div class="faq-answer">Peptides can be administered through several routes depending on the formulation: sublingual (under the tongue), oral capsules, topical creams, or injectable forms. Each method is optimized for the specific peptide's bioavailability and target pathway. Product instructions are included with every purchase.</div>
+        </details>
+        <details class="faq-item fade-up fade-up-d4">
+          <summary>Do I need a prescription?</summary>
+          <div class="faq-answer">Many peptides are available as research compounds or dietary supplements and do not require a prescription. However, regulations vary by country. We recommend checking your local laws and consulting a healthcare provider to ensure peptide therapy is appropriate for your needs.</div>
+        </details>
+        <details class="faq-item fade-up fade-up-d4">
+          <summary>What quality standards do you follow?</summary>
+          <div class="faq-answer">All Balibiohack products are manufactured in GMP-certified facilities and undergo rigorous third-party testing for purity, potency, and heavy metals. Our standards meet or exceed pharmaceutical-grade requirements, with a minimum purity threshold of 98% across all products.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BADGES ===== -->
+  <section class="trust" style="background:var(--bg-secondary);transition:background 0.3s;">
+    <div class="container">
+      <h2 class="section-title fade-up">BACKED BY SCIENCE. DRIVEN BY QUALITY.</h2>
+      <div class="trust-grid fade-up">
+        <div class="trust-item fade-up fade-up-d1">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Premium Grade
+        </div>
+        <div class="trust-item fade-up fade-up-d2">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Third-Party Tested
+        </div>
+        <div class="trust-item fade-up fade-up-d3">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Science Backed
+        </div>
+        <div class="trust-item fade-up fade-up-d4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Secure &amp; Discreet
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA SECTION ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <p class="section-label fade-up" style="color:rgba(255,255,255,0.7);">Get Started</p>
+      <h2 class="section-title fade-up" style="color:#fff;">Ready to Optimize Your Health?</h2>
+      <p class="section-desc fade-up" style="color:rgba(255,255,255,0.8);">
+        Join thousands who have taken control of their biology with premium peptide science.
+      </p>
+      <div class="how-cta fade-up">
+        <a href="#" class="btn btn-primary" style="background:#fff;color:var(--accent);">Get Started Today</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
         <div class="footer-brand">
-          <img src="logo.png" alt="BALIBIOHACK" height="40">
-          <p>HACK IT. LIVE BETTER. LONGER.</p>
+          <img src="logo-utama.png" alt="BALIBIOHACK" height="48">
+          <p class="footer-tagline">HACK IT. LIVE BETTER. LONGER.</p>
+          <p class="footer-desc">
+            Premium-grade peptide solutions for cellular optimization, repair, and healthy aging. 
+            Backed by science. Driven by quality.
+          </p>
         </div>
-        <div class="footer-social">
-          <p>@BALI_BIOHACK</p>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#science">Science</a></li>
+            <li><a href="#benefits">Benefits</a></li>
+            <li><a href="#process">Process</a></li>
+            <li><a href="#products">Products</a></li>
+          </ul>
         </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 BALIBIOHACK. All rights reserved.</p>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
         </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <div class="footer-social">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                @BALI_BIOHACK
+              </div>
+            </li>
+            <li><a href="#">Telegram</a></li>
+            <li><a href="#">Signal</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BALIBIOHACK. All rights reserved.</p>
+        <p>Premium Peptide Science for Optimal Living</p>
       </div>
     </div>
   </footer>
 
   <script>
-    const toggle = document.querySelector('.theme-toggle');
+    // Theme toggle
     const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const sunIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    const moonIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 
     function getPreferredTheme() {
       const stored = localStorage.getItem('theme');
@@ -563,7 +1663,7 @@
     function setTheme(theme) {
       html.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
-      toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+      toggle.innerHTML = theme === 'dark' ? sunIcon : moonIcon;
     }
 
     toggle.addEventListener('click', () => {
@@ -573,6 +1673,21 @@
 
     setTheme(getPreferredTheme());
 
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close mobile menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // IntersectionObserver for scroll animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -580,12 +1695,109 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll('.pillar-card, .peptide-card, .step, .trust-badge').forEach(el => {
-      el.classList.add('fade-in');
+    document.querySelectorAll('.fade-up').forEach(el => {
       observer.observe(el);
     });
   </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas) throw new Error('hero-canvas not found');
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, w / h, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    canvas.appendChild(renderer.domElement);
+
+    const isMobile = w < 768;
+    const strandCount = isMobile ? 12 : 20;
+    const sphereRadius = isMobile ? 0.25 : 0.3;
+    const helixRadius = isMobile ? 1.5 : 2;
+    const ySpacing = 0.7;
+
+    const helixGroup = new THREE.Group();
+    const sphereGeom = new THREE.SphereGeometry(sphereRadius, 24, 24);
+    const sphereMat1 = new THREE.MeshPhongMaterial({
+      color: 0x536627,
+      shininess: 60,
+      transparent: true,
+      opacity: isMobile ? 0.5 : 0.7
+    });
+    const sphereMat2 = new THREE.MeshPhongMaterial({
+      color: 0x8d996e,
+      shininess: 60,
+      transparent: true,
+      opacity: isMobile ? 0.5 : 0.7
+    });
+
+    const cylMat = new THREE.MeshPhongMaterial({
+      color: 0x70804a,
+      transparent: true,
+      opacity: isMobile ? 0.15 : 0.2
+    });
+
+    for (let i = 0; i < strandCount; i++) {
+      const t = (i / strandCount) * Math.PI * 4;
+      const y = (i - strandCount / 2) * ySpacing;
+
+      const s1 = new THREE.Mesh(sphereGeom, sphereMat1);
+      s1.position.set(Math.cos(t) * helixRadius, y, Math.sin(t) * helixRadius);
+      helixGroup.add(s1);
+
+      const s2 = new THREE.Mesh(sphereGeom, sphereMat2);
+      s2.position.set(Math.cos(t + Math.PI) * helixRadius, y, Math.sin(t + Math.PI) * helixRadius);
+      helixGroup.add(s2);
+
+      const cylGeom = new THREE.CylinderGeometry(0.04, 0.04, helixRadius * 2, 4);
+      const cyl = new THREE.Mesh(cylGeom, cylMat);
+      cyl.position.set(0, y, 0);
+      cyl.rotation.z = Math.PI / 2;
+      cyl.rotation.y = t;
+      helixGroup.add(cyl);
+    }
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.3);
+    scene.add(ambient);
+
+    const dir1 = new THREE.DirectionalLight(0xffffff, 0.5);
+    dir1.position.set(5, 5, 5);
+    scene.add(dir1);
+
+    const dir2 = new THREE.DirectionalLight(0x8d996e, 0.3);
+    dir2.position.set(-5, -3, -5);
+    scene.add(dir2);
+
+    helixGroup.position.y = 0;
+    scene.add(helixGroup);
+
+    camera.position.z = isMobile ? 6 : 8;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      helixGroup.rotation.y += 0.004;
+      helixGroup.rotation.x = Math.sin(Date.now() * 0.0002) * 0.05;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    function onResize() {
+      const w2 = window.innerWidth;
+      const h2 = window.innerHeight;
+      camera.aspect = w2 / h2;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w2, h2);
+    }
+    window.addEventListener('resize', onResize);
+  </script>
+
 </body>
 </html>
