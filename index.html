@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +8,31 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+  <link rel="icon" href="logo.png" type="image/png">
   <style>
     :root,
     [data-theme="dark"] {
-      --bg: #0a0a0f;
-      --bg-secondary: #12121e;
-      --text: #f0ede8;
+      --bg: #0a0909;
+      --bg-secondary: #12120e;
+      --text: #f9f6f1;
       --text-secondary: #a09888;
-      --accent: #c9a96e;
-      --accent-hover: #dbb978;
-      --card-bg: rgba(18, 18, 30, 0.8);
-      --card-border: rgba(201, 169, 110, 0.15);
-      --navbar-bg: rgba(10, 10, 15, 0.9);
+      --accent: #70804a;
+      --accent-hover: #8d996e;
+      --card-bg: rgba(18, 18, 14, 0.8);
+      --card-border: rgba(83, 102, 39, 0.15);
+      --navbar-bg: rgba(10, 9, 9, 0.9);
     }
 
     [data-theme="light"] {
-      --bg: #faf9f7;
+      --bg: #f9f6f1;
       --bg-secondary: #ffffff;
-      --text: #1a1a1a;
+      --text: #0a0909;
       --text-secondary: #5a5550;
-      --accent: #b8963a;
-      --accent-hover: #a07e2a;
+      --accent: #536627;
+      --accent-hover: #697749;
       --card-bg: #ffffff;
-      --card-border: rgba(0, 0, 0, 0.06);
-      --navbar-bg: rgba(250, 249, 247, 0.9);
+      --card-border: rgba(83, 102, 39, 0.06);
+      --navbar-bg: rgba(249, 246, 241, 0.9);
     }
 
     *,
@@ -102,7 +102,7 @@
 
     .btn-primary:hover {
       background: var(--accent-hover);
-      box-shadow: 0 0 30px rgba(201, 169, 110, 0.3);
+      box-shadow: 0 0 30px rgba(83, 102, 39, 0.3);
     }
 
     .navbar {
@@ -407,14 +407,14 @@
 <body>
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="#" class="logo">BALIBIOHACK</a>
+      <a href="#" class="logo"><img src="logo.png" alt="BALIBIOHACK" height="32"></a>
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="#why">Why Peptides</a></li>
           <li><a href="#how">How It Works</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+        <button class="theme-toggle" aria-label="Toggle theme">☀️</button>
       </div>
     </div>
   </nav>
@@ -537,7 +537,7 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <h3>BALIBIOHACK</h3>
+          <img src="logo.png" alt="BALIBIOHACK" height="40">
           <p>HACK IT. LIVE BETTER. LONGER.</p>
         </div>
         <div class="footer-social">
@@ -557,7 +557,7 @@
     function getPreferredTheme() {
       const stored = localStorage.getItem('theme');
       if (stored) return stored;
-      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      return 'light';
     }
 
     function setTheme(theme) {
