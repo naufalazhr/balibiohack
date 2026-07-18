@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BALIBIOHACK — Hack It. Live Better. Longer.</title>
+  <meta name="description" content="The next evolution of health & longevity. Premium-grade peptides for cellular repair, performance, and healthy aging.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧬</text></svg>">
+  <style>
+    :root,
+    [data-theme="dark"] {
+      --bg: #0a0a0f;
+      --bg-secondary: #12121e;
+      --text: #f0ede8;
+      --text-secondary: #a09888;
+      --accent: #c9a96e;
+      --accent-hover: #dbb978;
+      --card-bg: rgba(18, 18, 30, 0.8);
+      --card-border: rgba(201, 169, 110, 0.15);
+      --navbar-bg: rgba(10, 10, 15, 0.9);
+    }
+
+    [data-theme="light"] {
+      --bg: #faf9f7;
+      --bg-secondary: #ffffff;
+      --text: #1a1a1a;
+      --text-secondary: #5a5550;
+      --accent: #b8963a;
+      --accent-hover: #a07e2a;
+      --card-bg: #ffffff;
+      --card-border: rgba(0, 0, 0, 0.06);
+      --navbar-bg: rgba(250, 249, 247, 0.9);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 30px rgba(201, 169, 110, 0.3);
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      transition: background 0.3s ease;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .logo {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 2px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    .hero-tagline {
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .pillars {
+      background: var(--bg-secondary);
+      transition: background 0.3s;
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .pillar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 40px 28px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .pillar-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .pillar-card h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .pillar-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .peptides-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .peptide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: transform 0.3s;
+    }
+
+    .peptide-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .peptide-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+
+    .peptide-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .steps {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .step {
+      text-align: center;
+      flex: 1;
+      min-width: 140px;
+    }
+
+    .step-number {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 0 auto 12px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .step p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .step-arrow {
+      font-size: 1.5rem;
+      color: var(--accent);
+      font-weight: 300;
+      margin-top: -30px;
+    }
+
+    .how-cta {
+      text-align: center;
+    }
+
+    .trust {
+      background: var(--bg-secondary);
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .trust-heading {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+    }
+
+    .trust-grid {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .trust-badge {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-secondary);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer-brand h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+    }
+
+    .footer-social {
+      margin: 24px 0;
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 32px;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 60px 0; }
+      .section-title { font-size: 1.8rem; }
+      .pillars-grid,
+      .peptides-grid { grid-template-columns: 1fr; }
+      .steps { flex-direction: column; }
+      .step-arrow { transform: rotate(90deg); margin: 0; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .trust-grid { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="#" class="logo">BALIBIOHACK</a>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#why">Why Peptides</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" aria-label="Toggle theme">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <p class="hero-tagline">HACK IT. LIVE BETTER. LONGER.</p>
+      <h1 class="hero-title">THE NEXT EVOLUTION OF<br>HEALTH &amp; LONGEVITY</h1>
+      <p class="hero-subtitle">
+        Peptides are short chains of amino acids that act as messengers in the body — 
+        supporting repair, regeneration, performance, and overall well-being.
+      </p>
+      <a href="#why" class="btn btn-primary">Discover Peptides</a>
+    </div>
+  </section>
+
+  <section class="pillars">
+    <div class="container">
+      <div class="pillars-grid">
+        <div class="pillar-card">
+          <div class="pillar-icon">🔬</div>
+          <h3>Science Backed</h3>
+          <p>Formulations based on peer-reviewed research and clinical studies.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">🎯</div>
+          <h3>Targeted Regeneration</h3>
+          <p>Precise peptides designed for specific cellular pathways and outcomes.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-icon">⏳</div>
+          <h3>Optimize Longevity</h3>
+          <p>Support healthy aging, recovery, and sustained vitality at every stage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="why-peptides">
+    <div class="container">
+      <h2 class="section-title">Why Peptides?</h2>
+      <p class="section-subtitle">The building blocks of a healthier, longer life</p>
+      <div class="peptides-grid">
+        <div class="peptide-card">
+          <h3>Cellular Communication</h3>
+          <p>Peptides signal cells to perform functions more efficiently</p>
+        </div>
+        <div class="peptide-card">
+          <h3>Repair &amp; Regeneration</h3>
+          <p>Tissue repair, less inflammation, faster recovery</p>
+        </div>
+        <div class="peptide-card">
+          <h3>Healthy Aging</h3>
+          <p>Collagen production, hormonal balance, skin, cognition</p>
+        </div>
+        <div class="peptide-card">
+          <h3>Targeted &amp; Precise</h3>
+          <p>Specific pathways and measurable outcomes</p>
+        </div>
+        <div class="peptide-card">
+          <h3>Performance &amp; Vitality</h3>
+          <p>Energy, endurance, and strength optimization</p>
+        </div>
+        <div class="peptide-card">
+          <h3>Prevention &amp; Wellness</h3>
+          <p>Immune support, metabolic health, long-term wellness</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How Peptides Work</h2>
+      <p class="section-subtitle">A natural process, optimized</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Absorbed</h3>
+          <p>Enter the body and absorb efficiently</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Recognized</h3>
+          <p>Bind to specific cell receptors</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Signal Sent</h3>
+          <p>Trigger natural biological processes</p>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Results</h3>
+          <p>Repair, regeneration, optimization</p>
+        </div>
+      </div>
+      <div class="how-cta">
+        <a href="#contact" class="btn btn-primary">Explore Full Range</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="container">
+      <p class="trust-heading">BACKED BY SCIENCE. DRIVEN BY QUALITY.</p>
+      <div class="trust-grid">
+        <div class="trust-badge">✓ Premium Grade</div>
+        <div class="trust-badge">✓ Third-Party Tested</div>
+        <div class="trust-badge">✓ Secure Packaging</div>
+        <div class="trust-badge">✓ Trusted Suppliers</div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>BALIBIOHACK</h3>
+          <p>HACK IT. LIVE BETTER. LONGER.</p>
+        </div>
+        <div class="footer-social">
+          <p>@BALI_BIOHACK</p>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 BALIBIOHACK. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.querySelector('.theme-toggle');
+    const html = document.documentElement;
+
+    function getPreferredTheme() {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      toggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    setTheme(getPreferredTheme());
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.pillar-card, .peptide-card, .step, .trust-badge').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
