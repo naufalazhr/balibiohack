@@ -1240,6 +1240,135 @@
       }
     }
 
+    /* ============ EUROPEAN VERIFICATION ============ */
+    .euro-section {
+      padding: 140px 0;
+      background: var(--bg-secondary);
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .euro-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-soft), var(--accent));
+    }
+
+    .euro-hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+    }
+
+    .euro-hero .section-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .euro-hero h2 {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+
+    .euro-hero p {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 36px;
+    }
+
+    .euro-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 8px 32px rgba(83,102,39,0.25);
+    }
+
+    .euro-badge svg {
+      flex-shrink: 0;
+    }
+
+    .euro-standards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .euro-standard-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      transition: all var(--transition);
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .euro-standard-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px rgba(0,0,0,0.08);
+      border-color: var(--accent-soft);
+    }
+
+    .euro-standard-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(83,102,39,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+    }
+
+    .euro-standard-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .euro-standard-card p {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .euro-standards {
+        grid-template-columns: 1fr;
+      }
+      .euro-standard-card {
+        padding: 28px 24px;
+        gap: 16px;
+      }
+      .euro-standard-icon {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
     /* ============ CONSULTATION CTA ============ */
     .consult-cta {
       padding: 80px 0;
@@ -1268,6 +1397,32 @@
       pointer-events: none;
     }
 
+    .consult-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .consult-content .section-label {
+      text-align: left;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .consult-content h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .consult-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
     .consult-btn {
       display: inline-flex;
       align-items: center;
@@ -1279,12 +1434,20 @@
       font-weight: 600;
       font-size: 1rem;
       transition: all 0.3s ease;
+      text-decoration: none;
     }
 
     .consult-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 40px rgba(0,0,0,0.3);
       gap: 14px;
+      color: #0a0909;
+    }
+
+    .consult-note {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      margin-top: 16px;
     }
 
     .consult-visual {
@@ -1295,11 +1458,11 @@
       z-index: 1;
     }
 
-    .consult-badge {
+    .consult-badge-card {
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 16px;
-      padding: 20px 24px;
+      padding: 24px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -1307,8 +1470,8 @@
     }
 
     .consult-badge-icon {
-      width: 64px;
-      height: 64px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: rgba(255,255,255,0.15);
       display: flex;
@@ -1318,37 +1481,39 @@
       flex-shrink: 0;
     }
 
-    .consult-badge-text {
-      display: flex;
-      flex-direction: column;
-    }
-
     .consult-badge-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #fff;
+      display: block;
     }
 
     .consult-badge-sub {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: rgba(255,255,255,0.7);
     }
 
+    .consult-stat-row {
+      display: flex;
+      gap: 12px;
+    }
+
     .consult-stat {
+      flex: 1;
       background: rgba(255,255,255,0.08);
       border-radius: 12px;
-      padding: 16px 24px;
+      padding: 16px;
       text-align: center;
     }
 
     .consult-stat-number {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #fff;
     }
 
     .consult-stat-label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: rgba(255,255,255,0.6);
       margin-top: 2px;
     }
@@ -1359,20 +1524,8 @@
         padding: 36px 24px;
         gap: 32px;
       }
-      
-      .consult-visual {
+      .consult-stat-row {
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-between;
-      }
-      
-      .consult-badge {
-        width: 100%;
-      }
-      
-      .consult-stat {
-        flex: 1;
-        min-width: 140px;
       }
     }
   </style>
@@ -1765,52 +1918,128 @@
     </div>
   </section>
 
-  <!-- ===== FREE CONSULTATION CTA ===== -->
+  <!-- ===== EUROPEAN VERIFICATION (HIGHLIGHT) ===== -->
+  <section class="euro-section">
+    <div class="container">
+      <div class="euro-hero fade-up">
+        <p class="section-label">Indonesia's Premier Premium Peptides</p>
+        <h2>The First in Indonesia with Complete European Verification</h2>
+        <p>
+          Many peptides are heavily promoted by influencers, doctors, or sellers using unverified quality claims. 
+          BaliBioHack focuses strictly on absolute transparency through independent testing by European laboratories. 
+          We provide verifiable certificates for every batch to guarantee the highest quality, safety, and authenticity 
+          of each product.
+        </p>
+        <a href="https://wa.me/6285880000388?text=Hi%20BaliBioHack,%20I'd%20like%20a%20free%20consultation" 
+           target="_blank" rel="noopener noreferrer" class="euro-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          Free Consultation
+        </a>
+      </div>
+
+      <div class="euro-standards">
+        <div class="euro-standard-card fade-up fade-up-d1">
+          <div class="euro-standard-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              <path d="M9 12l2 2 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Independent Testing for Absolute Purity</h3>
+            <p>We execute rigorous independent testing on every batch to guarantee exact purity and quality. We do not rely on supplier promises. This mandatory testing protocol ensures maximum protection and efficacy for you.</p>
+          </div>
+        </div>
+
+        <div class="euro-standard-card fade-up fade-up-d2">
+          <div class="euro-standard-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="6" width="20" height="14" rx="2"/>
+              <path d="M6 10v.01M10 10v.01M14 10v.01M18 10v.01"/>
+              <path d="M12 2v4"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Trusted by Researchers (Cold-Chain Integrity)</h3>
+            <p>Our products are strictly maintained under vaccine-grade refrigeration protocols to preserve complete potency. This is a critical quality control step bypassed by inferior vendors.</p>
+          </div>
+        </div>
+
+        <div class="euro-standard-card fade-up fade-up-d3">
+          <div class="euro-standard-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="1" y="3" width="15" height="13" rx="2"/>
+              <path d="M16 8h4l3 3v5h-7V8z"/>
+              <circle cx="5.5" cy="18.5" r="2.5"/>
+              <circle cx="18.5" cy="18.5" r="2.5"/>
+            </svg>
+          </div>
+          <div>
+            <h3>Fast and Reliable Shipping</h3>
+            <p>Express delivery across Bali, and the rest of Indonesia. Global shipping protocols are also active and available.</p>
+          </div>
+        </div>
+
+        <div class="euro-standard-card fade-up fade-up-d4">
+          <div class="euro-standard-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div>
+            <h3>24/7 Dedicated Support</h3>
+            <p>Our support team is available round-the-clock to assist you. We provide top-tier consultation services from morning until night.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FREE WHATSAPP CONSULTATION ===== -->
   <section class="consult-cta">
     <div class="container">
       <div class="consult-card fade-up">
         <div class="consult-content">
-          <p class="section-label" style="text-align:left;color:#fff;opacity:0.8;">Free Consultation</p>
-          <h2 style="font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;">
-            Not Sure Which Peptide Is Right For You?
-          </h2>
-          <p style="color:rgba(255,255,255,0.85);font-size:1.05rem;line-height:1.7;margin-bottom:32px;max-width:520px;">
+          <p class="section-label">Free Consultation</p>
+          <h2>Not Sure Which Peptide Is Right For You?</h2>
+          <p>
             Get a free personalized consultation with our peptide specialists. 
             We'll help you identify the right protocol based on your health goals, 
             lifestyle, and biochemistry — no obligation, no pressure.
           </p>
-          <a href="https://wa.me/6285880000388?text=Hi%20Balibiohack,%20I'd%20like%20a%20free%20peptide%20consultation" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="btn consult-btn">
+          <a href="https://wa.me/6285880000388?text=Hi%20BaliBioHack,%20I'd%20like%20a%20free%20consultation" 
+             target="_blank" rel="noopener noreferrer" class="consult-btn">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="#25d366">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             Chat Free on WhatsApp
           </a>
-          <p style="color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:16px;">
-            Response within 24 hours • No commitment required • Confidential
-          </p>
+          <p class="consult-note">Response within 24 hours • No commitment required • Confidential</p>
         </div>
         <div class="consult-visual">
-          <div class="consult-badge">
+          <div class="consult-badge-card">
             <div class="consult-badge-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
               </svg>
             </div>
-            <div class="consult-badge-text">
+            <div>
               <span class="consult-badge-title">100% FREE</span>
               <span class="consult-badge-sub">Personalized Protocol</span>
             </div>
           </div>
-          <div class="consult-stat">
-            <div class="consult-stat-number">10K+</div>
-            <div class="consult-stat-label">Consultations Done</div>
-          </div>
-          <div class="consult-stat">
-            <div class="consult-stat-number">4.9/5</div>
-            <div class="consult-stat-label">Client Satisfaction</div>
+          <div class="consult-stat-row">
+            <div class="consult-stat">
+              <div class="consult-stat-number">10K+</div>
+              <div class="consult-stat-label">Consultations</div>
+            </div>
+            <div class="consult-stat">
+              <div class="consult-stat-number">4.9★</div>
+              <div class="consult-stat-label">Satisfaction</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1970,34 +2199,64 @@
   <section id="faq">
     <div class="container">
       <p class="section-label fade-up">FAQ</p>
-      <h2 class="section-title fade-up">Common Questions</h2>
+      <h2 class="section-title fade-up">Everything You Need to Know Before Starting</h2>
       <p class="section-desc fade-up">
-        Everything you need to know about peptides and how they can support your health journey.
+        Complete transparency about our products, testing, and support.
       </p>
       <div class="faq-list">
         <details class="faq-item fade-up">
-          <summary>What are peptides?</summary>
-          <div class="faq-answer">Peptides are short chains of amino acids — the building blocks of proteins. They function as signaling molecules in the body, instructing cells to perform specific biological processes like repair, regeneration, and hormone regulation. Unlike larger proteins, peptides are small enough to be efficiently absorbed and utilized.</div>
+          <summary>Why should I trust BaliBioHack?</summary>
+          <div class="faq-answer">Trust is built on verifiable data. We provide independent European lab certificates for every batch, ensuring zero compromise on peptide purity and safety.</div>
         </details>
-        <details class="faq-item fade-up fade-up-d1">
-          <summary>Are peptides safe?</summary>
-          <div class="faq-answer">When sourced from reputable suppliers and used as directed, peptides have an excellent safety profile. All Balibiohack products are third-party tested for purity, potency, and contaminants. We recommend consulting with a healthcare professional before starting any new supplement protocol.</div>
+
+        <details class="faq-item fade-up">
+          <summary>Why shouldn't I buy cheaper products elsewhere?</summary>
+          <div class="faq-answer">Cheaper peptides lack independent purity testing. They often contain dangerous impurities, heavy metals, or are severely under-dosed. Purity dictates efficacy and safety.</div>
         </details>
-        <details class="faq-item fade-up fade-up-d2">
-          <summary>How long until I see results?</summary>
-          <div class="faq-answer">Results vary depending on the specific peptide, dosage, and individual biochemistry. Many users report noticeable improvements within 2-4 weeks of consistent use, while some benefits — particularly around tissue repair and anti-aging — may take 8-12 weeks to become fully apparent.</div>
+
+        <details class="faq-item fade-up">
+          <summary>What exactly does BaliBioHack offer?</summary>
+          <div class="faq-answer">We supply premium, lab-verified peptides alongside elite consultation and guidance to ensure optimal protocols.</div>
         </details>
-        <details class="faq-item fade-up fade-up-d3">
-          <summary>How are peptides administered?</summary>
-          <div class="faq-answer">Peptides can be administered through several routes depending on the formulation: sublingual (under the tongue), oral capsules, topical creams, or injectable forms. Each method is optimized for the specific peptide's bioavailability and target pathway. Product instructions are included with every purchase.</div>
+
+        <details class="faq-item fade-up">
+          <summary>I have never used peptides before, can I start?</summary>
+          <div class="faq-answer">Yes. We provide complete guidance and protocols for absolute beginners.</div>
         </details>
-        <details class="faq-item fade-up fade-up-d4">
-          <summary>Do I need a prescription?</summary>
-          <div class="faq-answer">Many peptides are available as research compounds or dietary supplements and do not require a prescription. However, regulations vary by country. We recommend checking your local laws and consulting a healthcare provider to ensure peptide therapy is appropriate for your needs.</div>
+
+        <details class="faq-item fade-up">
+          <summary>Does BaliBioHack only sell products, or do you provide guidance?</summary>
+          <div class="faq-answer">We provide comprehensive support and protocol guidance, not just the raw compounds.</div>
         </details>
-        <details class="faq-item fade-up fade-up-d4">
-          <summary>What quality standards do you follow?</summary>
-          <div class="faq-answer">All Balibiohack products are manufactured in GMP-certified facilities and undergo rigorous third-party testing for purity, potency, and heavy metals. Our standards meet or exceed pharmaceutical-grade requirements, with a minimum purity threshold of 98% across all products.</div>
+
+        <details class="faq-item fade-up">
+          <summary>How do I know which product is right for my goals?</summary>
+          <div class="faq-answer">Utilize our free consultation service. Our experts will align our verified compounds with your specific biohacking objectives.</div>
+        </details>
+
+        <details class="faq-item fade-up">
+          <summary>What do I get when I order?</summary>
+          <div class="faq-answer">You receive the verified peptide vials, necessary supplies (if selected), and access to our protocol guidelines.</div>
+        </details>
+
+        <details class="faq-item fade-up">
+          <summary>Do I need to buy anything else?</summary>
+          <div class="faq-answer">Depending on the compound, you may require specific reconstitution liquids (BAC water) and delivery mechanisms. These are detailed during consultation.</div>
+        </details>
+
+        <details class="faq-item fade-up">
+          <summary>How does BaliBioHack handle shipping and security?</summary>
+          <div class="faq-answer">We use discreet, secure packaging with cold-chain considerations where necessary to ensure product integrity upon arrival.</div>
+        </details>
+
+        <details class="faq-item fade-up">
+          <summary>How fast is the delivery?</summary>
+          <div class="faq-answer">Express shipping ensures rapid delivery within Bali and major Indonesian hubs.</div>
+        </details>
+
+        <details class="faq-item fade-up">
+          <summary>What happens after I receive my order?</summary>
+          <div class="faq-answer">Our 24/7 support team remains available to assist with reconstitution, dosage calculations, and protocol management.</div>
         </details>
       </div>
     </div>
@@ -2045,7 +2304,7 @@
         Join thousands who have taken control of their biology with premium peptide science.
       </p>
       <div class="how-cta fade-up">
-        <a href="#" class="btn btn-primary" style="background:#fff;color:var(--accent);">Get Started Today</a>
+        <a href="https://wa.me/6285880000388?text=Hi%20BaliBioHack,%20I'd%20like%20to%20get%20started" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background:#fff;color:var(--accent);">Get Started Today</a>
       </div>
     </div>
   </section>
