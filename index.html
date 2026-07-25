@@ -689,73 +689,269 @@
       gap: 10px;
     }
 
-    /* ============ TESTIMONIALS ============ */
+    /* ============ GOOGLE REVIEWS ============ */
     .testimonials {
       background: var(--bg-secondary);
       transition: background 0.3s;
     }
 
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .testimonial-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      transition: all var(--transition);
-    }
-
-    .testimonial-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
-    }
-
-    .testimonial-stars {
+    .g-summary {
       display: flex;
-      gap: 4px;
-      margin-bottom: 16px;
-      color: var(--accent);
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 56px;
     }
 
-    .testimonial-quote {
-      font-size: 0.95rem;
+    .g-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .g-summary-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .g-rating-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .g-rating-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .g-stars {
+      color: #fbbc05;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+    }
+
+    .g-summary-label {
+      font-size: 0.85rem;
       color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: 24px;
-      font-style: italic;
+      margin-top: 4px;
     }
 
-    .testimonial-author {
+    .g-featured {
+      position: relative;
+      background: linear-gradient(135deg, var(--accent) 0%, #3c4d17 100%);
+      border-radius: 24px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .g-featured::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 50%;
+      height: 180%;
+      background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .g-quote-mark {
+      position: absolute;
+      top: 8px;
+      left: 32px;
+      font-size: 7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.12);
+      line-height: 1;
+      font-family: Georgia, serif;
+      pointer-events: none;
+    }
+
+    .g-featured-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .g-featured-body .g-stars {
+      margin-bottom: 16px;
+    }
+
+    .g-featured-text {
+      color: #fff;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 640px;
+    }
+
+    .g-featured-text strong {
+      font-weight: 700;
+      color: #e8f0d8;
+    }
+
+    .g-reviewer {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .testimonial-avatar {
+    .g-avatar {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
       display: flex;
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      background: var(--accent);
     }
 
-    .testimonial-name {
-      font-weight: 600;
-      font-size: 0.9rem;
+    .g-featured .g-avatar {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
     }
 
-    .testimonial-role {
+    .g-reviewer-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .g-featured .g-reviewer-name {
+      color: #fff;
+    }
+
+    .g-reviewer-meta {
       font-size: 0.8rem;
       color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .g-featured .g-reviewer-meta {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .g-new {
+      color: #34a853;
+      font-weight: 600;
+    }
+
+    .g-featured .g-new {
+      color: #a5d6a7;
+    }
+
+    .g-guide {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: rgba(83,102,39,0.12);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 100px;
+    }
+
+    .g-featured .g-guide {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+    }
+
+    .g-featured-stat {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 32px 40px;
+      backdrop-filter: blur(10px);
+    }
+
+    .g-featured-number {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .g-featured-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      margin-top: 8px;
+    }
+
+    .g-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .g-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      transition: all var(--transition);
+    }
+
+    .g-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+      border-color: var(--accent-soft);
+    }
+
+    .g-card-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .g-card .g-stars {
+      margin-bottom: 12px;
+    }
+
+    .g-card-text {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .g-featured {
+        grid-template-columns: 1fr;
+        padding: 36px 24px;
+        gap: 28px;
+      }
+      .g-featured-text {
+        font-size: 1.05rem;
+      }
+      .g-featured-stat {
+        justify-self: start;
+        padding: 24px 32px;
+      }
+      .g-featured-number {
+        font-size: 2.2rem;
+      }
+      .g-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ============ FAQ ============ */
@@ -2029,8 +2225,8 @@
           </div>
           <div class="consult-stat-row">
             <div class="consult-stat">
-              <div class="consult-stat-number">4.9★</div>
-              <div class="consult-stat-label">Satisfaction</div>
+              <div class="consult-stat-number">5.0★</div>
+              <div class="consult-stat-label">Google Rating</div>
             </div>
           </div>
         </div>
@@ -2123,65 +2319,121 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
+  <!-- ===== GOOGLE REVIEWS ===== -->
   <section class="testimonials">
     <div class="container">
-      <p class="section-label fade-up">Testimonials</p>
+      <p class="section-label fade-up">Real Client Stories</p>
       <h2 class="section-title fade-up">Trusted by the Community</h2>
       <p class="section-desc fade-up">
-        Real results from people who have made peptide optimization part of their health protocol.
+        Unfiltered reviews from real clients, straight from Google.
       </p>
-      <div class="testimonials-grid">
-        <div class="testimonial-card fade-up fade-up-d1">
-          <div class="testimonial-stars">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+
+      <div class="g-summary fade-up">
+        <div class="g-logo">
+          <svg width="32" height="32" viewBox="0 0 48 48">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+        </div>
+        <div class="g-summary-text">
+          <div class="g-rating-row">
+            <span class="g-rating-number">5.0</span>
+            <span class="g-stars">★★★★★</span>
           </div>
-          <p class="testimonial-quote">"I've been using Balibiohack's recovery protocol for three months. The difference in joint health and post-workout recovery is remarkable. This is legit science."</p>
-          <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&q=80" alt="Marcus K." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:12px;">
+          <span class="g-summary-label">Based on real Google reviews</span>
+        </div>
+      </div>
+
+      <div class="g-featured fade-up">
+        <div class="g-quote-mark">"</div>
+        <div class="g-featured-body">
+          <div class="g-stars">★★★★★</div>
+          <p class="g-featured-text">
+            Thank you to God who brought me together with you who helped me introduce myself to Reta.
+            My dream came true — after 3 months of the Reta program, I have lost <strong>23 kg, from 103 to 80</strong>.
+            Thx team and thx God.
+          </p>
+          <div class="g-reviewer">
+            <div class="g-avatar">M</div>
             <div>
-              <div class="testimonial-name">Marcus K.</div>
-              <div class="testimonial-role">Professional Athlete</div>
+              <div class="g-reviewer-name">Michael Tengoku Bali</div>
+              <div class="g-reviewer-meta">6 reviews · a week ago · <span class="g-new">New</span></div>
             </div>
           </div>
         </div>
-        <div class="testimonial-card fade-up fade-up-d2">
-          <div class="testimonial-stars">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="testimonial-quote">"The cognitive clarity and energy stability I've experienced since starting Balibiohack's nootropic peptide stack has been life-changing. Finally, a brand that delivers on its promises."</p>
-          <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&q=80" alt="Sarah R." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:12px;">
-            <div>
-              <div class="testimonial-name">Sarah R.</div>
-              <div class="testimonial-role">Biohacker &amp; Wellness Coach</div>
-            </div>
-          </div>
+        <div class="g-featured-stat">
+          <div class="g-featured-number">-23 kg</div>
+          <div class="g-featured-label">in 3 months</div>
         </div>
-        <div class="testimonial-card fade-up fade-up-d3">
-          <div class="testimonial-stars">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          </div>
-          <p class="testimonial-quote">"As someone who works in longevity research, I hold peptides to a high standard. Balibiohack's purity and formulation quality are exceptional. A trusted partner."</p>
-          <div class="testimonial-author">
-            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=80&h=80&fit=crop&q=80" alt="Dr. Chen L." style="width:56px;height:56px;border-radius:50%;object-fit:cover;margin-bottom:12px;">
+      </div>
+
+      <div class="g-grid">
+        <div class="g-card fade-up fade-up-d1">
+          <div class="g-card-top">
+            <div class="g-avatar" style="background:#70804a;">Y</div>
             <div>
-              <div class="testimonial-name">Dr. Chen L.</div>
-              <div class="testimonial-role">Longevity Researcher</div>
+              <div class="g-reviewer-name">Yumi Lifandi <span class="g-guide">Local Guide</span></div>
+              <div class="g-reviewer-meta">11 reviews · 9 photos · a week ago</div>
             </div>
           </div>
+          <div class="g-stars">★★★★★</div>
+          <p class="g-card-text">
+            Saya awalnya bingung mau cari peptide di Bali yang trusted, akhirnya direkomen ke BaliBioHack.
+            Di sini konsultasinya lengkap, after service-nya juga memuaskan, lengkap dengan sertifikatnya
+            jadi merasa lebih aman.
+          </p>
+        </div>
+
+        <div class="g-card fade-up fade-up-d2">
+          <div class="g-card-top">
+            <div class="g-avatar" style="background:#8d996e;">T</div>
+            <div>
+              <div class="g-reviewer-name">Trisca Ayunuranggraeni</div>
+              <div class="g-reviewer-meta">2 reviews · a week ago</div>
+            </div>
+          </div>
+          <div class="g-stars">★★★★★</div>
+          <p class="g-card-text">
+            Saya membeli Retatrutide 20 mg, dan seluruh prosesnya berjalan lancar mulai dari pemesanan
+            hingga pengiriman. Mereka menjawab semua pertanyaan saya dengan baik serta menyediakan
+            Certificate of Analysis (COA) lengkap untuk batch produk tersebut. Layanan pelanggannya sangat
+            baik, dan kemasannya berkualitas premium.
+          </p>
+        </div>
+
+        <div class="g-card fade-up fade-up-d3">
+          <div class="g-card-top">
+            <div class="g-avatar" style="background:#3c4d17;">R</div>
+            <div>
+              <div class="g-reviewer-name">Renus Ironman</div>
+              <div class="g-reviewer-meta">7 reviews · 5 photos · a week ago</div>
+            </div>
+          </div>
+          <div class="g-stars">★★★★★</div>
+          <p class="g-card-text">
+            Pada awalnya ibu saya sakit di lututnya, setelah konsultasi lengkap akhirnya beli BPC TB di sini.
+            Dengan BaliBioHack saya tahu pakai peptide itu sangat penting, apalagi untuk modern humanity.
+            Peptide ini sudah banyak membantu hidup saya.
+          </p>
+        </div>
+
+        <div class="g-card fade-up fade-up-d4">
+          <div class="g-card-top">
+            <div class="g-avatar" style="background:#697749;">V</div>
+            <div>
+              <div class="g-reviewer-name">Vincent Efferin <span class="g-guide">Local Guide</span></div>
+              <div class="g-reviewer-meta">78 reviews · 21 photos · a week ago</div>
+            </div>
+          </div>
+          <div class="g-stars">★★★★★</div>
+          <p class="g-card-text">
+            Bought MOTS-c, Retatrutide, and GHK-Cu. The quality is excellent, and every product came with
+            a detailed COA. Packaging was professional and complete, delivery was smooth, and customer
+            service answered all my questions. Definitely a reliable source for high-quality peptides.
+            Highly recommended!
+          </p>
         </div>
       </div>
     </div>
