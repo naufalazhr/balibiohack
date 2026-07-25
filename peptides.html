@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peptide Catalog — BALIBIOHACK</title>
+  <meta name="description" content="25 research-grade peptides organized by mechanism. Every batch independently tested with full Certificate of Analysis.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="logo-utama.png" type="image/png">
+
+  <style>
+    :root {
+      --bg: #f9f6f1;
+      --bg-secondary: #ffffff;
+      --text: #0a0909;
+      --text-secondary: #5a5550;
+      --accent: #536627;
+      --accent-hover: #697749;
+      --accent-soft: #8d996e;
+      --card-bg: #ffffff;
+      --card-border: rgba(83,102,39,0.08);
+      --navbar-bg: rgba(249,246,241,0.85);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', sans-serif;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0a0909;
+      --bg-secondary: #14130f;
+      --text: #f9f6f1;
+      --text-secondary: #a09888;
+      --accent: #8d996e;
+      --accent-hover: #a8b28d;
+      --accent-soft: #70804a;
+      --card-bg: rgba(20,19,15,0.6);
+      --card-border: rgba(141,153,110,0.12);
+      --navbar-bg: rgba(10,9,9,0.85);
+    }
+
+    [data-theme="dark"] .logo img,
+    [data-theme="dark"] .footer-brand img {
+      filter: brightness(0) invert(1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    section {
+      padding: 120px 0;
+      position: relative;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      transition: background 0.3s;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+
+    .logo img {
+      display: block;
+      height: 48px;
+      width: auto;
+      max-width: 220px;
+      object-fit: contain;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      color: var(--text);
+      line-height: 0;
+    }
+
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      color: var(--text);
+    }
+
+    /* ============ PAGE HEADER ============ */
+    .page-header {
+      padding-top: 120px;
+      padding-bottom: 60px;
+    }
+
+    .page-header .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .page-header .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .stats-row {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stats-row .stat {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stats-row .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+    }
+
+    .stats-row .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    .stats-row .divider {
+      width: 1px;
+      height: 40px;
+      background: var(--card-border);
+    }
+
+    /* ============ SEARCH ============ */
+    .search-section {
+      padding-bottom: 0;
+    }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px 18px 16px 50px;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-md);
+      background: var(--card-bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 1rem;
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-secondary);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(141,153,110,0.15);
+    }
+
+    .search-counter {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding-left: 4px;
+    }
+
+    /* ============ CATEGORY NAV ============ */
+    .category-nav {
+      position: sticky;
+      top: 72px;
+      z-index: 100;
+      background: var(--navbar-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .category-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-nav-inner {
+      display: flex;
+      gap: 8px;
+      padding: 16px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .category-pill {
+      flex-shrink: 0;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: transparent;
+      border: 1px solid var(--card-border);
+      cursor: pointer;
+      transition: all 0.3s;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+
+    .category-pill:hover,
+    .category-pill.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* ============ CATALOG ============ */
+    .catalog-section {
+      padding-top: 60px;
+    }
+
+    .category-block {
+      margin-bottom: 80px;
+      position: relative;
+    }
+
+    .category-header {
+      position: relative;
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .category-ghost {
+      font-family: var(--font-display);
+      font-size: clamp(5rem, 12vw, 10rem);
+      font-weight: 700;
+      color: var(--accent);
+      opacity: 0.06;
+      line-height: 1;
+      position: absolute;
+      top: -20px;
+      left: -8px;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .category-name {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .category-tagline {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: rgba(141,153,110,0.1);
+      color: var(--accent);
+      position: relative;
+    }
+
+    .peptides-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .peptide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      border-left: 3px solid var(--accent);
+      transition: all var(--transition);
+    }
+
+    .peptide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+      border-color: var(--accent-soft);
+    }
+
+    .peptide-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .peptide-card p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .category-block.hidden,
+    .peptide-card.hidden {
+      display: none;
+    }
+
+    /* ============ CTA ============ */
+    .cta-section {
+      background: linear-gradient(135deg, var(--accent) 0%, #3c4d17 100%);
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #fff;
+      color: #0a0909;
+      padding: 16px 32px;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+      gap: 14px;
+      color: #0a0909;
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      padding: 80px 0 40px;
+      border-top: 1px solid var(--card-border);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .footer-tagline {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      margin-top: 12px;
+      text-transform: uppercase;
+    }
+
+    .footer-brand .footer-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 300px;
+    }
+
+    .footer h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .footer ul {
+      list-style: none;
+    }
+
+    .footer ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer ul li a {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer ul li a:hover {
+      color: var(--accent);
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--card-border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    /* ============ FLOATING WHATSAPP ============ */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 60px;
+      height: 60px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      z-index: 9999;
+      transition: all 0.3s ease;
+      animation: whatsapp-pulse 2s infinite;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-float svg {
+      fill: #fff;
+      width: 32px;
+      height: 32px;
+    }
+
+    @keyframes whatsapp-pulse {
+      0% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0.4); }
+      70% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 12px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4), 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 768px) {
+      section { padding: 80px 0; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--navbar-bg);
+        backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .stats-row {
+        gap: 20px;
+      }
+
+      .stats-row .stat-num {
+        font-size: 1.5rem;
+      }
+
+      .stats-row .divider {
+        height: 28px;
+      }
+
+      .peptides-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 60px 0; }
+
+      .page-header {
+        padding-top: 100px;
+      }
+
+      .stats-row {
+        gap: 16px;
+      }
+
+      .stats-row .stat-num {
+        font-size: 1.3rem;
+      }
+
+      .stats-row .stat-label {
+        font-size: 0.7rem;
+      }
+
+      .stats-row .divider {
+        height: 24px;
+      }
+
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <img src="logo-utama.png" alt="BALIBIOHACK">
+      </a>
+      <div class="nav-right">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">← Home</a></li>
+          <li><a href="#metabolism">Metabolism</a></li>
+          <li><a href="#repair">Repair</a></li>
+          <li><a href="#brain">Brain</a></li>
+          <li><a href="#hormones">Hormones</a></li>
+          <li><a href="#longevity">Longevity</a></li>
+          <li><a href="#wellness">Wellness</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <p class="label fade-up">The Complete Range</p>
+      <h1 class="fade-up">Peptide Index</h1>
+      <p class="subtitle fade-up">25 research-grade compounds, organized by mechanism. Every batch independently tested with full Certificate of Analysis.</p>
+      <div class="stats-row fade-up">
+        <div class="stat">
+          <span class="stat-num">25</span>
+          <span class="stat-label">Peptides</span>
+        </div>
+        <div class="divider"></div>
+        <div class="stat">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Categories</span>
+        </div>
+        <div class="divider"></div>
+        <div class="stat">
+          <span class="stat-num">98%+</span>
+          <span class="stat-label">Purity</span>
+        </div>
+        <div class="divider"></div>
+        <div class="stat">
+          <span class="stat-num">COA</span>
+          <span class="stat-label">Verified</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== SEARCH ===== -->
+  <section class="search-section">
+    <div class="container">
+      <div class="search-wrap">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search peptides by name or benefit...">
+      </div>
+      <p class="search-counter" id="searchCounter">Showing 25 of 25 peptides</p>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORY NAV ===== -->
+  <nav class="category-nav">
+    <div class="category-nav-inner" id="categoryNav">
+      <a href="#metabolism" class="category-pill" data-cat="metabolism">Weight Loss & Metabolism</a>
+      <a href="#repair" class="category-pill" data-cat="repair">Repair & Regeneration</a>
+      <a href="#brain" class="category-pill" data-cat="brain">Brain & Cognition</a>
+      <a href="#hormones" class="category-pill" data-cat="hormones">Hormones & Sexual Health</a>
+      <a href="#longevity" class="category-pill" data-cat="longevity">Anti-Aging & Longevity</a>
+      <a href="#wellness" class="category-pill" data-cat="wellness">Skin & Wellness</a>
+    </div>
+  </nav>
+
+  <!-- ===== CATALOG ===== -->
+  <section class="catalog-section">
+    <div class="container" id="catalog"></div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Not Sure Which Peptide Is Right For You?</h2>
+      <p>Get a free personalized consultation with our peptide specialists.</p>
+      <a href="https://wa.me/6285880000388?text=Hi%20BaliBioHack,%20I'd%20like%20a%20free%20consultation" target="_blank" rel="noopener noreferrer" class="cta-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Get Free Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="logo-utama.png" alt="BALIBIOHACK" style="height:56px;width:auto;object-fit:contain;">
+          <p class="footer-tagline">HACK IT. LIVE BETTER. LONGER.</p>
+          <p class="footer-desc">
+            Premium-grade peptide solutions for cellular optimization, repair, and healthy aging. 
+            Backed by science. Driven by quality.
+          </p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#science">Science</a></li>
+            <li><a href="index.html#benefits">Benefits</a></li>
+            <li><a href="index.html#products">Products</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Support</h4>
+          <ul>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Connect</h4>
+          <ul>
+            <li>
+              <div class="footer-social">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+                @BALI_BIOHACK
+              </div>
+            </li>
+            <li><a href="#">Telegram</a></li>
+            <li><a href="#">Signal</a></li>
+            <li><a href="https://wa.me/6285880000388" target="_blank" rel="noopener">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BALIBIOHACK. All rights reserved.</p>
+        <p>Premium Peptide Science for Optimal Living</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <a href="https://wa.me/6285880000388" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Theme toggle
+    const html = document.documentElement;
+    const toggle = document.getElementById('themeToggle');
+    const sunIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
+    const moonIcon = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+    function getPreferredTheme() {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored;
+      return 'dark';
+    }
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      toggle.innerHTML = theme === 'dark' ? moonIcon : sunIcon;
+    }
+
+    toggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    });
+
+    setTheme(getPreferredTheme());
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // CATALOG DATA
+    const CATALOG = [
+      { id:"metabolism", num:"01", name:"Weight Loss & Metabolism", tagline:"Compounds targeting appetite, fat metabolism, and energy expenditure.", peptides:[
+        ["Retatrutide","A triple-action peptide that targets GLP-1, GIP, and glucagon receptors to reduce appetite and increase calorie burning. It is being studied as one of the most effective medications for weight loss and metabolic health."],
+        ["MOTS-c","A mitochondrial peptide that helps cells use glucose and fat more efficiently. It is being studied for improving metabolism, exercise performance, and healthy aging."],
+        ["Tesamorelin","A growth hormone-releasing hormone (GHRH) analogue that increases natural growth hormone production. It is best known for reducing visceral abdominal fat while preserving muscle."],
+        ["AOD-9604","A modified fragment of growth hormone developed specifically for fat metabolism. It is designed to promote fat loss without significantly affecting blood sugar or growth hormone levels."],
+        ["SLU-PP-332","An experimental compound that activates pathways involved in energy metabolism. Early research suggests it may mimic some benefits of exercise by increasing calorie burning."],
+        ["5-Amino-1MQ","An experimental compound that inhibits NNMT, an enzyme linked to fat metabolism. Early studies suggest it may help reduce fat accumulation and improve metabolic health."]]},
+      { id:"repair", num:"02", name:"Repair & Regeneration", tagline:"Peptides accelerating healing of muscle, tendon, and soft tissue.", peptides:[
+        ["BPC-157 + TB-500","A combination commonly used to support healing of muscles, tendons, ligaments, and other soft tissues. It is popular in regenerative medicine research for accelerating recovery."],
+        ["Muscle Repairing Peptide","A regenerative peptide designed to support muscle healing after injury or intense exercise. It aims to accelerate tissue repair and reduce recovery time."],
+        ["SS-31 (Elamipretide)","A mitochondrial peptide designed to improve the way cells produce energy. It is being researched for fatigue, muscle recovery, heart health, and age-related diseases."],
+        ["Follistatin","A naturally occurring protein that blocks myostatin, which limits muscle growth. It is being researched for increasing muscle mass and improving recovery."]]},
+      { id:"brain", num:"03", name:"Brain & Cognition", tagline:"Nootropic peptides for focus, memory, mood, and sleep.", peptides:[
+        ["Semax","A peptide originally developed to support brain function and recovery. It is commonly researched for improving focus, memory, and mental clarity."],
+        ["Selank","A peptide studied for reducing anxiety and improving mood. It may also help with focus and mental performance without causing sedation."],
+        ["Pinealon","A short peptide being researched for brain health and healthy aging. It may help protect nerve cells and support memory."],
+        ["DSIP","A peptide researched for improving sleep quality and stress regulation. It may also support recovery and relaxation."]]},
+      { id:"hormones", num:"04", name:"Hormones & Sexual Health", tagline:"Compounds supporting fertility, testosterone, and reproductive function.", peptides:[
+        ["HCG","A hormone that stimulates the testes to produce testosterone and supports fertility. It is commonly used after anabolic steroid cycles or in fertility treatment."],
+        ["HMG","A fertility medication containing FSH and LH to stimulate sperm and egg production. It is mainly used to treat infertility in both men and women."],
+        ["Kisspeptin","A hormone that stimulates the body's natural reproductive hormone system. It may improve fertility, testosterone production, and sexual health."],
+        ["PT-141 (Bremelanotide)","A peptide that increases sexual desire by acting on the brain rather than blood vessels. It has been studied for treating low libido in both men and women."],
+        ["Oxytocin","A hormone involved in bonding, trust, and emotional connection. It also plays an important role in childbirth, breastfeeding, and sexual function."]]},
+      { id:"longevity", num:"05", name:"Anti-Aging & Longevity", tagline:"Compounds for cellular repair, NAD+ restoration, and healthy aging.", peptides:[
+        ["NAD+","A coenzyme essential for energy production and DNA repair in every cell. NAD+ therapy is commonly used to support energy, recovery, and healthy aging."],
+        ["Epitalon","A peptide being researched for healthy aging and cellular longevity. It may support sleep quality and normal melatonin production."],
+        ["Ipamorelin","A growth hormone secretagogue that stimulates natural growth hormone release. It is commonly used to support muscle recovery, sleep quality, and body composition."]]},
+      { id:"wellness", num:"06", name:"Skin & Wellness", tagline:"Antioxidants and peptides for skin, recovery, and overall vitality.", peptides:[
+        ["GHK-Cu","A copper peptide known for promoting skin repair, collagen production, and wound healing. It is also being studied for hair growth and tissue regeneration."],
+        ["Glutathione","A powerful antioxidant naturally produced by the body that helps protect cells from oxidative damage. It is commonly used to support liver health, skin brightness, and recovery."],
+        ["KLOW","A multi-peptide wellness blend designed to support overall health and recovery. It is typically marketed for anti-aging, cellular repair, and vitality."]]}
+    ];
+
+    // Render catalog
+    const catalogEl = document.getElementById('catalog');
+    let totalPeptides = 0;
+
+    CATALOG.forEach(cat => {
+      const block = document.createElement('div');
+      block.className = 'category-block fade-up';
+      block.id = cat.id;
+      block.dataset.catName = cat.name.toLowerCase();
+      block.dataset.catTagline = cat.tagline.toLowerCase();
+
+      const names = cat.peptides.map(p => p[0].toLowerCase());
+      const descs = cat.peptides.map(p => p[1].toLowerCase());
+      block.dataset.pepNames = names.join('|');
+      block.dataset.pepDescs = descs.join('|');
+
+      block.innerHTML = `
+        <div class="category-header">
+          <span class="category-ghost">${cat.num}</span>
+          <h2 class="category-name">${cat.name}</h2>
+          <p class="category-tagline">${cat.tagline}</p>
+          <span class="category-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            ${cat.peptides.length} compounds
+          </span>
+        </div>
+        <div class="peptides-grid">
+          ${cat.peptides.map(([name, desc]) => {
+            totalPeptides++;
+            return `<div class="peptide-card" data-search="${(name + ' ' + desc).toLowerCase()}">
+              <h3>${name}</h3>
+              <p>${desc}</p>
+            </div>`;
+          }).join('')}
+        </div>
+      `;
+
+      catalogEl.appendChild(block);
+    });
+
+    // Search filter
+    const searchInput = document.getElementById('searchInput');
+    const searchCounter = document.getElementById('searchCounter');
+
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.toLowerCase().trim();
+      let visible = 0;
+
+      document.querySelectorAll('.category-block').forEach(block => {
+        const cards = block.querySelectorAll('.peptide-card');
+        let blockVisible = 0;
+
+        cards.forEach(card => {
+          const match = !q || card.dataset.search.includes(q);
+          card.classList.toggle('hidden', !match);
+          if (match) blockVisible++;
+        });
+
+        block.classList.toggle('hidden', blockVisible === 0);
+        visible += blockVisible;
+      });
+
+      searchCounter.textContent = `Showing ${visible} of ${totalPeptides} peptides`;
+    });
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 140;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // IntersectionObserver reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
